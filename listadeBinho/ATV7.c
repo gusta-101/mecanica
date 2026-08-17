@@ -18,10 +18,10 @@ int main(){
         scanf("%d", &num[i]);
     }
 
-    printf("insira a posicao do numero que voce deseja remover:\n");
     int redu;
+    printf("insira a posicao do numero que voce deseja remover:\n");
     scanf("%d", &redu);
-    while(redu < 1 || redu > n){
+    while(redu<1 || redu>n){
         printf("valor invalido, fora dos limites da lista.\nInsira novamente:\n");
         scanf("%d", &redu);
     }

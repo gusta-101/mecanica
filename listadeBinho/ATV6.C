@@ -25,7 +25,7 @@ int alocamento(int quant,int vet[]){
             printf("Valor invalido! Digite novamente\n");
             }else{
                 quant=quant+temp;
-                vet=(int*) realloc(vet, sizeof(int) * quant); 
+                vet=realloc(vet, sizeof(int) * quant); 
                 printf("\n Modificação salva\n");
                 alocamento(quant,vet);
             }
