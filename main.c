@@ -1,5 +1,0 @@
-Última caixa empilhada no armazém (Pilha)
-1- Registrar chegada de caixa -> Envia a caixa para a lista do prancheta e para o final da esteira (Fila).2- Ver prancheta de carga -> Exibe todas as caixas aguardando (Lista normal).3- Operar esteira rolante (Fila) -> Mostra estritamente a primeira caixa.
-|-> Empilhar: Envia para o topo da Pilha do armazém, removendo da esteira e do prancheta.
-|-> Adiar (Etiqueta ilegível): Tira do início da esteira e joga para o final da esteira (rotaciona a fila sem alterar a lista).
-|-> Voltar: Retorna ao menu.4- Desempilhar (Correção) -> Remove a caixa do topo da Pilha e a devolve para a frente da esteira e para o prancheta (desfaz o erro).5- Despachar para o caminhão (Pilha) -> Remove estritamente a caixa do topo da Pilha e a envia para o cliente (sai do sistema definitivamente).
