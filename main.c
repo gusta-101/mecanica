@@ -1,46 +1,5 @@
-#ifndef MECANICA_PEDIDOS_H
-#define MECANICA_PEDIDOS_H
-
-typedef struct Pedido {
-	int codigo;
-	char cliente[100];
-	char veiculo[100];
-	char servico[100];
-} Pedido;
-
-typedef struct NoFila {
-	Pedido pedido;
-	struct NoFila *proximo;
-} NoFila;
-
-typedef struct Fila {
-	NoFila *inicio;
-	NoFila *fim;
-	int quantidade;
-} Fila;
-
-typedef struct NoPilha {
-	Pedido pedido;
-	struct NoPilha *proximo;
-} NoPilha;
-
-typedef struct Pilha {
-	NoPilha *topo;
-	int quantidade;
-} Pilha;
-
-/* 1 - Cadastrar pedido */
-void cadastrarPedido(Fila *fila);
-
-/* 2 - Ver lista de pedidos pendentes */
-void listarPedidosPendentes(const Fila *fila);
-
-/* 3 - Ver pedido atual (fila) */
-void verPedidoAtual(Fila *fila, Pilha *historico);
-void marcarPedidoComoConcluido(Fila *fila, Pilha *historico);
-void voltarParaFila(Fila *fila);
-
-/* 4 - Desmarcar pedido anterior (pilha) */
-void desmarcarPedidoAnterior(Fila *fila, Pilha *historico);
-
-#endif
+Última caixa empilhada no armazém (Pilha)
+1- Registrar chegada de caixa -> Envia a caixa para a lista do prancheta e para o final da esteira (Fila).2- Ver prancheta de carga -> Exibe todas as caixas aguardando (Lista normal).3- Operar esteira rolante (Fila) -> Mostra estritamente a primeira caixa.
+|-> Empilhar: Envia para o topo da Pilha do armazém, removendo da esteira e do prancheta.
+|-> Adiar (Etiqueta ilegível): Tira do início da esteira e joga para o final da esteira (rotaciona a fila sem alterar a lista).
+|-> Voltar: Retorna ao menu.4- Desempilhar (Correção) -> Remove a caixa do topo da Pilha e a devolve para a frente da esteira e para o prancheta (desfaz o erro).5- Despachar para o caminhão (Pilha) -> Remove estritamente a caixa do topo da Pilha e a envia para o cliente (sai do sistema definitivamente).
