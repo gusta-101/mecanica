@@ -10,13 +10,13 @@ int main(){
         printf("0-> Sair\n");
         scanf("%d",&user);
         switch (user){
-        case '1':
+        case 1:
             Estoquista();
             break;
-        case '2':
+        case 2:
             /* code */
             break;
-        case '0':
+        case 0:
             printf("\nPrograma Encerrando...");
             break;
         default:
