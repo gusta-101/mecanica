@@ -3,28 +3,33 @@
 #include <string.h>
 #include "ChegadadePedido.h"
 
-// 1. Cadastrar Pacote (Insere na Prancheta [Lista] e na Esteira [Fila])
+// 1. Cadastra pacote na Prancheta (Lista) e na Esteira (Fila)
 void novopacote(Prancheta* prancheta, FilaEsteira* esteira, int* IdDoPedido) {
     NoPedido* EntregaNova = (NoPedido*) malloc(sizeof(NoPedido));
-    NoPedido* noPrancheta = (NoPedido*) malloc(sizeof(NoPedido)); 
+    NoPedido* noPrancheta = (NoPedido*) malloc(sizeof(NoPedido));
+
+    if (EntregaNova == NULL || noPrancheta == NULL) {
+        printf("\nErro ao alocar memoria para o pedido.\n");
+        return;
+    }
 
     printf("\n===================================");
     printf("\nInsira o endereco de entrega do pacote: ");
-    scanf(" %[^\n]", EntregaNova->Entrega); 
-    
+    scanf(" %[^\n]", EntregaNova->Entrega);
+
     strcpy(noPrancheta->Entrega, EntregaNova->Entrega);
 
-    printf("\nID do pacote gerado: %d\n", *IdDoPedido);
+    printf("ID do pacote gerado: %d\n", *IdDoPedido);
     noPrancheta->NumPedido = *IdDoPedido;
     EntregaNova->NumPedido = *IdDoPedido;
 
-    EntregaNova->ProxNo = NULL; 
+    EntregaNova->ProxNo = NULL;
 
-    // Inserção na Prancheta (Lista Simples - no início)
+    // Inserção na Prancheta (Lista Simples - Início)
     noPrancheta->ProxNo = prancheta->inicio;
     prancheta->inicio = noPrancheta;
 
-    // Inserção na Esteira (Fila FIFO - no fim)
+    // Inserção na Esteira (Fila FIFO - Fim)
     if (esteira->inicio == NULL) {
         esteira->inicio = EntregaNova;
         esteira->fim = EntregaNova;
@@ -33,12 +38,12 @@ void novopacote(Prancheta* prancheta, FilaEsteira* esteira, int* IdDoPedido) {
         esteira->fim = EntregaNova;
     }
 
-    printf("========== Pedido Cadastrado ==========\n");
+    printf("======== Pedido Cadastrado ========\n");
 
     (*IdDoPedido)++;
 }
 
-// 2. Visualizar histórico da Prancheta
+// 2. Exibe os elementos da Prancheta
 void verPranchetaEntrada(Prancheta* lista) {
     NoPedido* atual = lista->inicio;
     int posicao = 1;
@@ -51,31 +56,30 @@ void verPranchetaEntrada(Prancheta* lista) {
     }
 
     while (atual != NULL) {
-        printf("-Pedido #%d - Endereço: %s\n", atual->NumPedido, atual->Entrega);
+        printf("-Pedido #%d - Endereco: %s\n", atual->NumPedido, atual->Entrega);
         atual = atual->ProxNo;
         posicao++;
-        printf("---------------------------------------------------\n");
+        printf("---------------------\n");
     }
 }
 
-// 3. Visualizar e desenfileirar pacote da Esteira
 
 
-
-// Menu principal do módulo Estoquista
+// Módulo Estoquista
 void Estoquista(int* IdDoPedido, FilaEsteira* esteira, Prancheta* prancheta) {
-    int Estoquser = 3;
+    int user = 0;
+
     do {
-        printf("\n=========================\nChegada e Envio\n=========================\n"
+        printf("\nChegada e Envio\n\n"
                "1- Registrar chegada de pacote\n"
                "2- Ver prancheta de entrada\n"
                "3- Operar esteira rolante (Fila)\n"
                "4- Despachar para o caminhão (Pilha)\n"
                "0- Sair\n"
                ">> ");
-        scanf("%d", &Estoquser);
+        scanf("%d", &user);
 
-        switch (Estoquser) {
+        switch (user) {
             case 1:
                 novopacote(prancheta, esteira, IdDoPedido);
                 break;
@@ -86,15 +90,15 @@ void Estoquista(int* IdDoPedido, FilaEsteira* esteira, Prancheta* prancheta) {
                 
                 break;
             case 4:
-                
+                /* A implementar: Despachar para o caminhão */
                 break;
             case 0:
                 printf("\nSaindo do menu do Estoquista...\n");
                 break;
             default:
-                printf("\nOpção Inválida\n=============================\n");
+                printf("\nOpcao Invalida\n=============================\n");
                 break;
         }
 
-    } while (Estoquser != 0);
+    } while (user != 0);
 }
