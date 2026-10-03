@@ -11,7 +11,6 @@ int main() {
     Prancheta prancheta;
     FilaEsteira esteira;
 
-    
     iniciarlista(&prancheta, &esteira);
 
     int user = 9;
@@ -26,12 +25,11 @@ int main() {
         scanf("%d", &user);
 
         switch (user) {
-            case 1: 
+            case 1:
                 Estoquista(&IdDoPedido, &esteira, &prancheta);
-            break;
+                break;
             case 2:
-
-            break;
+                break;
             case 0:
                 printf("\nPrograma Encerrando...\n");
                 break;

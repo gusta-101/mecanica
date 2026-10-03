@@ -50,5 +50,13 @@ desenfileiramento e move pra lista simples (Entregas_Feitas_hoje)
 2- Ver entregas Entregas Feitas hoje
 lista todos os produtos da lista simples(Entregas_Feitas_hoje)
 
-3- Fechar dia de entregas 
+3- Fechar dia de entregas
 esvazia lista simples Entregas_Feitas_hoje
+
+
+Para rodar o codigo:
+
+```bash
+gcc -Wall -Wextra -std=c11 main.c ChegadaDePedido.c Caminhao.c -o mecanica
+./mecanica
+```

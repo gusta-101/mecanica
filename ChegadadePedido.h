@@ -7,9 +7,9 @@
 
 // 1. NÓ DO PEDIDO
 typedef struct NoPedido {
-    int NumPedido;   
+    int NumPedido;
     char Entrega[50];
-    struct NoPedido* ProxNo;          
+    struct NoPedido* ProxNo;
 } NoPedido;
 
 // 2. PRANCHETA (Lista Simples)
@@ -26,7 +26,6 @@ typedef struct {
 // Protótipos das funções
 void novopacote(Prancheta* prancheta, FilaEsteira* esteira, int* IdDoPedido);
 void Estoquista(int* IdDoPedido, FilaEsteira* esteira, Prancheta* prancheta);
-
 void verPranchetaEntrada(Prancheta* lista);
 
 #endif
