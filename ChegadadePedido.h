@@ -1,13 +1,31 @@
-#include <stdio.h>
-#include <stdlib.h>
+#ifndef CHEGADA_DE_PEDIDO_H
+#define CHEGADA_DE_PEDIDO_H
 
-typedef struct No {
-    int NumPedido;             
-    struct No* proximo;    
-} No;
+#include "bibliotecaGlobal.h"
 
+//Nó do Pedido
+typedef struct NoPedido {
+    int NumPedido;
+    char Entrega[100];
+    struct NoPedido* ProxNo;
+} NoPedido;
+
+//Prancheta Lista Simples
 typedef struct {
-    No* inicio;
-} ListaNovaEntrada;
+    NoPedido* inicio;
+} Prancheta;
 
-int novopacote(No* NovoPedido, ListaNovaEntrada* Lista);
+//Esteira(Fila) 
+typedef struct {
+    NoPedido* inicio;
+    NoPedido* fim;
+} FilaEsteira;
+
+// Estoquista
+void Estoquista(int* IdDoPedido, FilaEsteira* esteira, Prancheta* prancheta);
+void novopacote(Prancheta* prancheta, FilaEsteira* esteira, int* IdDoPedido);
+void verPranchetaEntrada(Prancheta* lista);
+
+
+
+#endif
