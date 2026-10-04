@@ -4,7 +4,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "bibliotecaGlobal.h"
+
+// Forward Declaration (Avisa que a struct existe)
+typedef struct PilhaCaminhao PilhaCaminhao;
 
 // Nó do Pedido
 typedef struct NoPedido {
@@ -13,7 +15,7 @@ typedef struct NoPedido {
     struct NoPedido* ProxNo;
 } NoPedido;
 
-// Prancheta (Lista Simples)
+// Prancheta (Lista)
 typedef struct {
     NoPedido* inicio;
 } Prancheta;
@@ -24,9 +26,11 @@ typedef struct {
     NoPedido* fim;
 } FilaEsteira;
 
-// Funções
+// Protótipos das funções
 void novopacote(Prancheta* prancheta, FilaEsteira* esteira, int* IdDoPedido);
 void verPranchetaEntrada(Prancheta* lista);
-void Estoquista(int* IdDoPedido, FilaEsteira* esteira, Prancheta* prancheta);
+void operarEsteira(FilaEsteira* esteira);
+void DespacharParaCaminhao(FilaEsteira* esteira, Prancheta* prancheta, PilhaCaminhao* caminhao);
+void Estoquista(int* IdDoPedido, FilaEsteira* esteira, Prancheta* prancheta, PilhaCaminhao* caminhao);
 
 #endif

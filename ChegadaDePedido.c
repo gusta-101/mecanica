@@ -1,7 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+
 #include "ChegadadePedido.h"
+#include "caminhao.h"
 
 // 1. Cadastra pacote na Prancheta (Lista) e na Esteira (Fila)
 void novopacote(Prancheta* prancheta, FilaEsteira* esteira, int* IdDoPedido) {
@@ -63,10 +62,43 @@ void verPranchetaEntrada(Prancheta* lista) {
     }
 }
 
+//Despachar para caminhao
 
+void DespacharParaCaminhao(FilaEsteira* esteira, Prancheta* prancheta, PilhaCaminhao* caminhao) {
+    if (esteira == NULL || esteira->inicio == NULL) {
+        printf("\n========================\nEsteira está vazia!\n========================\n");
+        return;
+    }
 
-// Módulo Estoquista
-void Estoquista(int* IdDoPedido, FilaEsteira* esteira, Prancheta* prancheta) {
+    while (esteira->inicio != NULL) {
+        NoPedido* novoNo = (NoPedido*) malloc(sizeof(NoPedido));
+        
+        if (novoNo == NULL) {
+            printf("\n---------------------\nErro de alocacao de memoria\n---------------------\n");
+            return;
+        }
+
+        NoPedido* pacoteRemovido = esteira->inicio;
+
+        novoNo->NumPedido = pacoteRemovido->NumPedido;
+        strcpy(novoNo->Entrega, pacoteRemovido->Entrega);
+
+        novoNo->ProxNo = caminhao->topo;
+        caminhao->topo = novoNo;
+
+        printf("\nPedido #%d despachado", novoNo->NumPedido);
+
+        esteira->inicio = esteira->inicio->ProxNo;
+
+        free(pacoteRemovido);
+    }
+
+    esteira->fim = NULL;
+    printf("\n\nTodos os pacotes da esteira foram despachados com sucesso!\n");
+}
+
+//  Estoquista
+void Estoquista(int* IdDoPedido, FilaEsteira* esteira, Prancheta* prancheta, PilhaCaminhao* caminhao){
     int user = 0;
 
     do {
@@ -87,10 +119,10 @@ void Estoquista(int* IdDoPedido, FilaEsteira* esteira, Prancheta* prancheta) {
                 verPranchetaEntrada(prancheta);
                 break;
             case 3:
-                
+            //a fazer
                 break;
             case 4:
-                /* A implementar: Despachar para o caminhão */
+            DespacharParaCaminhao(esteira, prancheta, caminhao);
                 break;
             case 0:
                 printf("\nSaindo do menu do Estoquista...\n");
@@ -101,4 +133,5 @@ void Estoquista(int* IdDoPedido, FilaEsteira* esteira, Prancheta* prancheta) {
         }
 
     } while (user != 0);
+    return;
 }

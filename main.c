@@ -2,18 +2,20 @@
 #include <stdlib.h>
 #include "bibliotecaGlobal.h"
 #include "ChegadadePedido.h"
+#include "caminhao.h"
 
-void iniciarlista(Prancheta* p, FilaEsteira* e) {
+void iniciarlista(Prancheta* p, FilaEsteira* e,PilhaCaminhao* c) {
     p->inicio = NULL;
     e->inicio = NULL;
     e->fim = NULL;
+    c->topo = NULL;
 }
 
 int main() {
     Prancheta prancheta;
     FilaEsteira esteira;
-
-    iniciarlista(&prancheta, &esteira);
+    PilhaCaminhao caminhao;
+    iniciarlista(&prancheta, &esteira,&caminhao);
 
     int user = 9;
     int IdDoPedido = 1;
@@ -26,10 +28,11 @@ int main() {
         scanf("%d",&user);
         switch (user){
         case 1:
-            Estoquista(&IdDoPedido, &esteira, &prancheta);
+        
+            Estoquista(&IdDoPedido, &esteira, &prancheta,&caminhao);
             break;
         case 2:
-            /* code */
+            Entregador(&caminhao);
             break;
         case 0:
             printf("\nPrograma Encerrando...");
