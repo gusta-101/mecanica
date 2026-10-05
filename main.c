@@ -4,33 +4,12 @@
 #include "ChegadadePedido.h"
 #include "caminhao.h"
 
-<<<<<<< HEAD
-void iniciarlista(Prancheta* p, FilaEsteira* e,PilhaCaminhao* c) {
-    p->inicio = NULL;
-    e->inicio = NULL;
-    e->fim = NULL;
-    c->topo = NULL;
+void iniciarlista(Prancheta* prancheta, FilaEsteira* este,PilhaCaminhao* ca) {
+    prancheta->inicio = NULL;
+    este->inicio = NULL;
+    este->fim = NULL;
+    ca->topo = NULL;
 }
-=======
-static void limparEntrada(){
-    int caractere;
-
-    while((caractere = getchar()) != '\n' && caractere != EOF){
-    }
-}
-
-static int lerInteiro(int* valor){
-    if(scanf("%d", valor) != 1){
-        limparEntrada();
-        return 0;
-    }
-
-    return 1;
-}
-
-int main(){
-    int user=9;
->>>>>>> 9b7dc33 (feat: mostrar primeira caixa)
 
 int main() {
     Prancheta prancheta;
@@ -38,27 +17,17 @@ int main() {
     PilhaCaminhao caminhao;
     iniciarlista(&prancheta, &esteira,&caminhao);
 
-    int user = 9;
+    int user;
     int IdDoPedido = 1;
 
     do {
         printf("\nLogar como...\n");
         printf("1-> Estoquista\n");
         printf("2-> Entregador\n");
-<<<<<<< HEAD
         printf("0-> Sair\n>> ");
         scanf("%d",&user);
-=======
-        printf("0-> Sair\n");
-        if(!lerInteiro(&user)){
-            printf("\nOpcao invalida. Digite apenas numeros.\n");
-            user = -1;
-            continue;
-        }
->>>>>>> 9b7dc33 (feat: mostrar primeira caixa)
         switch (user){
         case 1:
-        
             Estoquista(&IdDoPedido, &esteira, &prancheta,&caminhao);
             break;
         case 2:

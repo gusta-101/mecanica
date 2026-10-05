@@ -1,9 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "Caminhao.h"
+#include "caminhao.h"
 
-// A lista de entregas feitas pode continuar estática no dia do entregador
 static ListaEntregasFeitas entregasFeitasHoje = { NULL };
 
 int empilharCaminhao(PilhaCaminhao* caminhao, const NoPedido* pedido) {
@@ -30,8 +29,8 @@ static NoPedido* desempilharCaminhao(PilhaCaminhao* caminhao) {
     }
 
     NoPedido* removido = caminhao->topo;
-    caminhao->topo = removido->ProxNo;   // o de baixo vira o topo
-    removido->ProxNo = NULL;            // desliga o no da pilha
+    caminhao->topo = removido->ProxNo;   
+    removido->ProxNo = NULL;           
     return removido;
 }
 
