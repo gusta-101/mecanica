@@ -1,19 +1,20 @@
 Para rodar:
 Abra a pasta pelo terminal e siga os passos, dependendo do seu sistema:
-No Linux (Terminal / Bash)
+
+No Windows:
+    Compile gerando um executável:
+    gcc *.c -o programa.exe
+    
+    Execute-o:
+    .\programa.exe
+
+No Linux:
     Use o comando:
     gcc *.c -o programa
 
     Execute o programa gerado:
     Bash./programa
 
-No Windows 
-    
-    Compile gerando um executável:
-    gcc *.c -o programa.exe
-    
-    Execute-o:
-    .\programa.exe
 
 ## Sistema pra gerenciamento de armazém e entregas
 
@@ -25,38 +26,33 @@ Logar como...
 
 chegada e envio
 
-1- Registrar chegada de pacote
+1- Registrar chegada de pacote:
 Anota o pedido na prancheta (lista normal) e esteira (Fila).
 
-2- Ver prancheta de Pedidos do Dia
+2- Ver prancheta de Pedidos do Dia:
 Mostra todos os pedidos que chegaram (Lista normal).
 
-3- Operar esteira rolante (Fila)
+3- Operar esteira rolante (Fila):
 Mostra a primeira caixa que está na ponta da esteira (na fila).
 
-|-> Empilhar: Move o primeiro valor da Esteira (Fila) para Transportadora (fila)
+|-> Ver primeira caixa na ponta da esteira: 
+    Mostra o primeiro pacote da Esteira (Fila).
 
-4- Despachar para o caminhão (Pilha)
-Move da Transportadora(Fila) para Caminhão (Pilha) e apaga o nome dela da Prancheta (Lista Simples).
+4- Despachar para o caminhão (Pilha):
+Move da Esteira(Fila) para Caminhão (Pilha) e apaga o nome dela da Prancheta (Lista Simples).
 
 ---------> 2 -> Entregador
 
 Entregas
 
 1- Ver Próxima entrega (acessar lista caminhão (Pilha))
-|-> Marcar entrega como concluída e ir para a próxima entrega
-desenfileiramento e move pra lista simples (Entregas_Feitas_hoje)
+|-> Marcar entrega como concluída e ir para a próxima entrega:
+    desenfileira o primeiro valor no caminhao e move pra Entregas_Feitas_hoje(lista simples).
 
-2- Ver entregas Entregas Feitas hoje
-lista todos os produtos da lista simples(Entregas_Feitas_hoje)
+2- Ver entregas Entregas Feitas hoje:
+lista todos os produtos da Entregas_Feitas_hoje(lista simples).
 
-3- Fechar dia de entregas
+3- Fechar dia de entregas:
 esvazia lista simples Entregas_Feitas_hoje
 
 
-Para rodar o codigo:
-
-```bash
-gcc -Wall -Wextra -std=c11 main.c ChegadaDePedido.c Caminhao.c -o mecanica
-./mecanica
-```
